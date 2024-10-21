@@ -1,0 +1,10 @@
+##Workshop 1
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("edgeR")
+BiocManager::install("recount3")
+install.packages("tidyverse")
+library("recount3")
+library("edgeR")
+library("tidyverse")
+available_projects()
