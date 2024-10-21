@@ -25,3 +25,12 @@ long_format_indata <- pivot_longer(indata,-Gene, names_to = "Sample", values_to=
   mutate("Patient"= str_sub(Sample,9,9),
          "Tissue"= str_split_fixed(Sample, "_",2)[,2])
 install.packages("ggplot2")
+library(ggplot2)
+ggplot(data = long_format_indata) + geom_boxplot(aes(x=Sample, y=counts))
+long_format_indata <- long_format_indata |> 
+  mutate("Log10_Counts"=log10(counts))
+ggplot(data = long_format_indata) + geom_boxplot(aes(x=Sample, y=Log10_Counts))
+VEGFA_long_format_indata <- filter(long_format_indata, Gene =="VEGFA")
+ggplot(data = VEGFA_long_format_indata) + geom_point(aes(x=Tissue, y=counts, col=Patient))
+
+##RNAseq pre-processing
