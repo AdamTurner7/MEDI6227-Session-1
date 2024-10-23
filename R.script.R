@@ -34,3 +34,15 @@ VEGFA_long_format_indata <- filter(long_format_indata, Gene =="VEGFA")
 ggplot(data = VEGFA_long_format_indata) + geom_point(aes(x=Tissue, y=counts, col=Patient))
 
 ##RNAseq pre-processing
+
+library(recount3)
+library(edgeR)
+
+#Import data from GEO
+SRP012015.recount3<-recount3::create_rse_manual(
+  project = "SRP012015",
+  project_home = "data_sources/sra",
+  organism = "human",
+  annotation = "gencode_v29",
+  type = "gene"
+)
